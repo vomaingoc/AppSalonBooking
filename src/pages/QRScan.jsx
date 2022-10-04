@@ -26,17 +26,20 @@ const App = () => {
     <div className="App">
       {startScan && (
         <>
-          <select onChange={(e) => setSelected(e.target.value)}>
+          {/* <select onChange={(e) => setSelected(e.target.value)}>
             <option value={'environment'}>Back Camera</option>
             <option value={'user'}>Front Camera</option>
-          </select>
+          </select> */}
           <QrReader
             // facingMode={selected}
             delay={1000}
             onError={handleError}
             onScan={handleScan}
-            chooseDeviceId={() => selected}
+            // chooseDeviceId={() => selected}
             style={{ width: '300px' }}
+            constraints={{
+              facingMode: 'environment'
+            }}
           />
         </>
       )}
