@@ -6,75 +6,34 @@ const App = () => {
   const [scannedCodes, setScannedCodes] = useState('')
 
   useEffect(() => {
-    function onScanSuccess(decodedText, decodedResult) {
-      // handle the scanned code as you like, for example:
+    // function onScanSuccess(decodedText, decodedResult) {
+    //   // handle the scanned code as you like, for example:
+    //   console.log(`Code matched = ${decodedText}`, decodedResult)
+    //   // setScannedCodes(scannedCodes.concat([{ decodedText, decodedResult }]))
+    //   setScannedCodes(decodedText)
+    //   html5QrcodeScanner.clear()
+    // }
+
+    // function onScanFailure(error) {
+    //   // handle scan failure, usually better to ignore and keep scanning.
+    //   // for example:
+    //   console.warn(`Code scan error = ${error}`)
+    // }
+    // let config = { fps: 10, qrbox: {width: 250, height: 250} };
+    // let html5QrcodeScanner = new Html5QrcodeScanner(
+    //   'reader',
+    //   config,
+    //   /* verbose= */ false,
+    // )
+    // html5QrcodeScanner.render(onScanSuccess, onScanFailure)
+    const html5QrCode = new Html5Qrcode("reader");
+    const qrCodeSuccessCallback = (decodedText, decodedResult) => {
       console.log(`Code matched = ${decodedText}`, decodedResult)
-      // setScannedCodes(scannedCodes.concat([{ decodedText, decodedResult }]))
       setScannedCodes(decodedText)
-      html5QrcodeScanner.clear()
-    }
-
-    function onScanFailure(error) {
-      // handle scan failure, usually better to ignore and keep scanning.
-      // for example:
-      console.warn(`Code scan error = ${error}`)
-    }
-
-    let html5QrcodeScanner = new Html5QrcodeScanner(
-      'reader',
-      { fps: 10, qrbox: { width: 250, height: 250 } },
-      /* verbose= */ false,
-    )
-    html5QrcodeScanner.render(onScanSuccess, onScanFailure)
+    };
+    const config = { fps: 10, qrbox: { width: 250, height: 250 } };
+    html5QrCode.start({ facingMode: { exact: "environment"} }, config, qrCodeSuccessCallback);
   }, [])
-  // function isMobile() {
-  //   const isAndroid = /Android/i.test(navigator.userAgent)
-  //   const isiOS = /iPhone|iPad|iPod/i.test(navigator.userAgent)
-  //   return isAndroid || isiOS
-  // }
-
-  // async function setupCamera() {
-  //   const isPortrait = true // do logic here
-
-  //   let video = document.getElementById('video')
-
-  //   console.log('Getting video')
-
-  //   video.setAttribute('autoplay', '')
-  //   video.setAttribute('muted', '')
-  //   video.setAttribute('playsinline', '')
-
-  //   console.log('Calling getUserMedia')
-
-  //   return new Promise((resolve) => {
-  //     ;(async () => {
-  //       await navigator.mediaDevices
-  //         .getUserMedia({
-  //           audio: false,
-  //           video: {
-  //             facingMode: 'user',
-  //             width: isPortrait ? 480 : 640,
-  //             height: isPortrait ? 640 : 480,
-  //           },
-  //         })
-  //         .then((stream) => {
-  //           console.log('Got getUserMedia stream')
-  //           video.srcObject = stream
-  //           video.play()
-  //           resolve(true)
-  //         })
-  //         .catch((err) => {
-  //           console.log('Encountered getUserMedia error', err)
-  //           resolve(false)
-  //         })
-  //     })()
-  //   })
-  // }
-
-  // ;(async () => {
-  //   const ret = await setupCamera()
-  //   console.log(`Initialised camera: ${ret}`)
-  // })()
   return (
     <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
       <div className="button-back" style={{ paddingLeft: 16, paddingTop: 44 }}>
