@@ -31,7 +31,7 @@ const App = () => {
             <option value={'user'}>Front Camera</option>
           </select>
           <QrReader
-            facingMode={selected}
+            // facingMode={selected}
             delay={1000}
             onError={handleError}
             onScan={handleScan}
