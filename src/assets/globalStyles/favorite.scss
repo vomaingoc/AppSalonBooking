@@ -1,0 +1,70 @@
+.list-favorite {
+  margin-top: 16px;
+  width: 100%;
+  .item {
+    padding: 5px 16px;
+    width: 100%;
+    > * {
+      flex-wrap: nowrap;
+      // justify-content: space-between;
+    }
+    .salon-infor {
+      padding-left: 8px;
+      .row1 {
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2px;
+        .salon-name {
+          font-weight: 700;
+          font-size: 16px;
+          color: #101828;
+        }
+      }
+      .salon-address,
+      .salon-wokingtime {
+        align-items: center;
+        display: flex;
+        column-gap: 8px;
+        font-size: 12px;
+        .icon {
+          margin-right: 6px;
+          .anticon {
+            color: #667085;
+            font-size: 12px;
+            position: relative;
+            top: 0;
+          }
+        }
+      }
+      .salon-wokingtime {
+        justify-content: space-between;
+      }
+      .salon-address {
+        margin-bottom: 2px;
+        font-size: 12px;
+        .icon {
+          position: relative;
+          top: 2px;
+          svg {
+            height: 14px;
+            width: 14px;
+          }
+        }
+      }
+    }
+  }
+  .icon-heart {
+    .s1 {
+      display: none;
+    }
+
+    &.active {
+      .s1 {
+        display: block;
+      }
+      .s2 {
+        display: none;
+      }
+    }
+  }
+}

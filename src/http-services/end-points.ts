@@ -1,0 +1,11 @@
+const API_BASE_URL = process.env.REACT_APP_API_HOST
+const MEMBER_API_END_POINTS = {}
+const POS_API_END_POINTS = {
+  GET_SALONS: `${API_BASE_URL}/salons`,
+}
+const END_POINTS = {
+  MEMBER_API_END_POINTS,
+  POS_API_END_POINTS,
+}
+
+export default END_POINTS

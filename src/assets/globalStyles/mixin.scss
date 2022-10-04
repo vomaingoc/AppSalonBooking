@@ -1,0 +1,211 @@
+@mixin clearfix {
+  &::after {
+    content: '';
+    display: block;
+    clear: both;
+    height: 0;
+    overflow: hidden;
+  }
+}
+
+@mixin orientation($o) {
+  @if $o==portrait {
+    @media only screen and (orientation: portrait) {
+      @content;
+    }
+  } @else if $o==landscape {
+    @media only screen and (orientation: landscape) {
+      @content;
+    }
+  }
+}
+
+@mixin mydevice($d) {
+  @if $d==desktop {
+    .isDesktop & {
+      @content;
+    }
+  } @else if $d==mobile {
+    .isMobile & {
+      @content;
+    }
+  } @else if $d==tablet {
+    .isTablet & {
+      @content;
+    }
+  } @else if $d==phone {
+    .isMobile:not(.isTablet) & {
+      @content;
+    }
+    @media (max-width: 375px) {
+      @content;
+    }
+  } @else if $d==tablet_p {
+    .isTablet & {
+      @include orientation(portrait) {
+        @content;
+      }
+    }
+  } @else if $d==tablet_l {
+    .isTablet & {
+      @include orientation(landscape) {
+        @content;
+      }
+    }
+  }
+}
+
+@mixin mybrowser($d) {
+  @if $d==ie {
+    .isIE & {
+      @content;
+    }
+  } @else if $d==safari {
+    .isSafari & {
+      @content;
+    }
+  }
+}
+
+@mixin choose_btn_2_notactive {
+  .lb-chk {
+    @content;
+  }
+}
+
+@mixin minscreenw($point) {
+  @media (min-width: $point) {
+    @content;
+  }
+}
+
+@mixin maxscreenw($point) {
+  @media (max-width: $point) {
+    @content;
+  }
+}
+
+@mixin mscreenw($point1, $poin2) {
+  @media (min-width: $point1) and (max-width: $point2) {
+    @content;
+  }
+}
+
+@mixin minscreenh($point) {
+  @media (min-height: $point) {
+    @content;
+  }
+}
+
+@mixin myprint {
+  @media print {
+    @content;
+  }
+}
+
+@mixin myshadow($style) {
+  @if $style==1 {
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.14), 0 4px 4px rgba(0, 0, 0, 0.28);
+  } @else if $style==2 {
+    box-shadow: 0 -1px 0 #e0e0e0, 0 0 2px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.12);
+  }
+}
+
+@mixin myscrollbar {
+  &::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 2px;
+  }
+}
+
+@mixin myscrollbar2 {
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0);
+    border-radius: 2px;
+  }
+
+  &:hover {
+    &::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.1);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 2px;
+    }
+  }
+}
+
+$asset-base-path: '../assets' !default;
+
+@function asset($type, $file) {
+  @return url($asset-base-path + '/' + $type + '/' + $file);
+}
+
+@function image($file) {
+  @return asset('images', $file);
+}
+
+@function font($file) {
+  @return asset('fonts', $file);
+}
+
+@mixin aspect-ratio($width, $height) {
+  position: relative;
+
+  &:before {
+    display: block;
+    content: '';
+    width: 100%;
+    padding-top: ($height / $width) * 100%;
+  }
+
+  > .content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+}
+
+@mixin scroll-touch {
+  -webkit-overflow-scrolling: touch;
+  /* Lets it scroll lazy */
+}
+
+@mixin scroll-auto {
+  -webkit-overflow-scrolling: auto;
+  /* Stops scrolling immediately */
+}
+
+@mixin dropdownstyle {
+  border: 1px solid rgba(217, 217, 217, 0.5);
+  box-shadow: 0 10px 37px rgba(0, 0, 0, 0.15);
+  border-radius: 14px;
+  padding: 16px 24px;
+}
+
+@mixin selectfocus {
+  border-color: #222 !important;
+  border-width: 2px !important;
+  background-color: #f7f7f7 !important;
+}

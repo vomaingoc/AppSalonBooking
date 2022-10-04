@@ -1,0 +1,284 @@
+// @import './main.scss';
+.app-page {
+  background: #f9fafb;
+  min-height: 100vh;
+}
+.salon-status {
+  &::before {
+    content: '·';
+    font-size: 40px;
+    line-height: 0;
+    height: 20px;
+    display: inline-block;
+    position: relative;
+    top: 7px;
+    margin-right: 4px;
+    color: #667085;
+  }
+}
+.slide-salon-lbl {
+  height: 283px;
+}
+.slide-salon {
+  position: relative;
+  position: fixed;
+
+  top: 0;
+  left: 0;
+  right: 0;
+
+  &-images {
+    height: 190px;
+    overflow: hidden;
+  }
+  .ant-carousel {
+    z-index: 0;
+    position: relative;
+  }
+  .tool-top {
+    position: absolute;
+    top: 44px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 16px;
+  }
+  .salon-infor {
+    position: absolute;
+    top: 160px;
+    left: 16px;
+    right: 16px;
+    z-index: 2;
+    background: #ffffff;
+    box-shadow: 0px 12px 16px -4px rgba(21, 112, 239, 0.08),
+      0px 4px 6px -2px rgba(21, 112, 239, 0.03);
+    border-radius: 8px;
+    padding: 5px 16px;
+
+    .icon {
+      color: #667085;
+      font-size: 18px;
+    }
+    .row1 {
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2px;
+      .salon-name {
+        font-weight: 700;
+        font-size: 16px;
+        color: #101828;
+      }
+    }
+    .salon-address,
+    .salon-wokingtime {
+      align-items: center;
+      display: flex;
+      column-gap: 8px;
+    }
+    .salon-address {
+      margin-bottom: 2px;
+      .icon {
+        position: relative;
+        top: 4px;
+      }
+    }
+  }
+}
+.lbl1 {
+  font-weight: 500;
+  font-size: 16px;
+  color: #101828;
+}
+.ant-picker {
+  border-radius: 8px;
+}
+.optional {
+  font-size: 16px;
+  line-height: 24px;
+  text-align: right;
+  color: #667085;
+}
+
+.list-technician {
+  // display: flex;
+  // column-gap: 16px;
+  // overflow: hidden;
+  // overflow-x: auto;
+  $w: 96px;
+  .swiper-slide {
+    width: $w;
+  }
+  .item {
+    width: 96px;
+    .image {
+      width: $w;
+      height: $w;
+      border-radius: 100px;
+      border: solid 4px #84caff;
+      position: relative;
+      .img-tech {
+        border-radius: 100px;
+        overflow: hidden;
+      }
+      .icon-check {
+        position: absolute;
+        bottom: -4px;
+        right: -4px;
+        z-index: 3;
+      }
+    }
+    .text {
+      margin-top: 8px;
+      font-size: 12px;
+      text-align: center;
+      color: #667085;
+      text-align: center;
+    }
+  }
+}
+.list-service {
+  .item {
+    position: relative;
+    z-index: 1;
+    .icon-checked {
+      position: absolute;
+      right: 0;
+      top: 10%;
+      display: none;
+    }
+    .addons {
+      font-size: 12px;
+      color: #667085;
+    }
+    &.active {
+      .icon-checked {
+        display: block;
+      }
+    }
+    .name {
+      font-weight: 500;
+      font-size: 14px;
+      color: #2e90fa;
+    }
+    .ant-btn {
+      font-size: 12px;
+      padding-left: 0;
+    }
+    .price {
+      font-weight: 500;
+      font-size: 14px;
+      color: #ca8504;
+    }
+  }
+  &--recap {
+    .item {
+      .name {
+        color: #101828;
+        font-weight: 500;
+      }
+    }
+  }
+}
+.salon-app .search-tool--service {
+  position: sticky;
+  padding: 0 16px;
+  top: 0;
+  padding-bottom: 16px;
+  padding-top: 44px;
+  background-color: #fff;
+  z-index: 3;
+  .ant-select-selector {
+    background: #f9fafb;
+    border-radius: 8px;
+    border: 0;
+  }
+}
+
+.my-tabs {
+  .ant-tabs-nav {
+    background-color: #fff;
+    padding-left: 16px;
+    padding-right: 16px;
+    position: sticky;
+    left: 0;
+    right: 0;
+    top: 88px;
+    z-index: 9;
+  }
+  .ant-tabs-nav-list {
+    justify-content: space-around;
+  }
+  .ant-tabs-nav-list {
+    width: 100%;
+  }
+}
+
+.list-bookings {
+  padding: 0 16px;
+  .item {
+    background: #ffffff;
+    box-shadow: 0px 12px 16px -4px rgba(21, 112, 239, 0.08),
+      0px 4px 6px -2px rgba(21, 112, 239, 0.03);
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 16px;
+    display: block;
+
+    .name {
+      font-size: 14px;
+      color: #101828;
+      margin-bottom: 6px;
+    }
+    .price {
+      font-weight: 500;
+      font-size: 14px;
+      text-align: right;
+      color: #ca8504;
+    }
+    .services {
+      font-weight: 400;
+      font-size: 12px;
+      color: #667085;
+    }
+    .datetime {
+      font-size: 12px;
+      text-align: right;
+      color: #667085;
+      margin-bottom: 6px;
+    }
+    .status {
+      font-weight: 400;
+      font-size: 12px;
+
+      color: #667085;
+      &.confirmed,
+      &.processing,
+      &.done {
+        color: green;
+      }
+      &.waiting {
+        color: #ca8504;
+      }
+      &.canceled {
+        color: #f04438;
+      }
+    }
+  }
+}
+.booking-action {
+  padding: 2px 12px;
+  border-radius: 100px;
+  font-size: 12px;
+  border: 0;
+  height: auto;
+  &.cancel {
+    background: #fef3f2;
+    color: #f04438;
+  }
+
+  &.checkin {
+    color: #1570ef;
+    background-color: #d1e9ff;
+  }
+}
