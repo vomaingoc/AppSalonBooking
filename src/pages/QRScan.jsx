@@ -6,33 +6,24 @@ const App = () => {
   const [scannedCodes, setScannedCodes] = useState('')
 
   useEffect(() => {
-    // function onScanSuccess(decodedText, decodedResult) {
-    //   // handle the scanned code as you like, for example:
-    //   console.log(`Code matched = ${decodedText}`, decodedResult)
-    //   // setScannedCodes(scannedCodes.concat([{ decodedText, decodedResult }]))
-    //   setScannedCodes(decodedText)
-    //   html5QrcodeScanner.clear()
-    // }
-
-    // function onScanFailure(error) {
-    //   // handle scan failure, usually better to ignore and keep scanning.
-    //   // for example:
-    //   console.warn(`Code scan error = ${error}`)
-    // }
-    // let config = { fps: 10, qrbox: {width: 250, height: 250} };
-    // let html5QrcodeScanner = new Html5QrcodeScanner(
-    //   'reader',
-    //   config,
-    //   /* verbose= */ false,
-    // )
-    // html5QrcodeScanner.render(onScanSuccess, onScanFailure)
-    const html5QrCode = new Html5QrcodeScanner("reader");
-    const qrCodeSuccessCallback = (decodedText, decodedResult) => {
+    function onScanSuccess(decodedText, decodedResult) {
       console.log(`Code matched = ${decodedText}`, decodedResult)
       setScannedCodes(decodedText)
-    };
-    const config = { fps: 10, qrbox: { width: 250, height: 250 } };
-    html5QrCode.start({ facingMode: { exact: "environment"} }, config, qrCodeSuccessCallback);
+      html5QrcodeScanner.clear()
+    }
+
+    function onScanFailure(error) {
+      console.warn(`Code scan error = ${error}`)
+    }
+    let config = { fps: 10, qrbox: {width: 250, height: 250} };
+    let html5QrcodeScanner = new Html5QrcodeScanner( 'reader', config)
+    html5QrcodeScanner.render(onScanSuccess, onScanFailure)
+    // const html5QrCode = new Html5QrcodeScanner("reader");
+    // const qrCodeSuccessCallback = (decodedText, decodedResult) => {
+    //   console.log(`Code matched = ${decodedText}`, decodedResult)
+    //   setScannedCodes(decodedText)
+    // };
+    //  html5QrCode.start({ facingMode: { exact: "environment"} }, config, qrCodeSuccessCallback);
   }, [])
   return (
     <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
