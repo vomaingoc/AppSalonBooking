@@ -18,6 +18,7 @@ const App = () => {
               // setData(result?.text);
               if (result?.text) {
                 setScanEnable(false);
+                alert("Successfully checked in");
                 navigate("/bookings");
               }
             }
