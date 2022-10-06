@@ -2,35 +2,44 @@
 
 import React, { useState } from "react";
 import { QrReader } from "react-qr-reader";
-import "../assets/globalStyles/camera.css";
-
+import "../assets/globalStyles/camera.scss";
+import { useNavigate } from "react-router-dom";
 const App = () => {
-  const [data, setData] = useState("");
+  const navigate = useNavigate();
+
+  // const [data, setData] = useState("");
+  const [scanEnable, setScanEnable] = useState(true);
   return (
     <>
-      <QrReader
-        onResult={(result, error) => {
-          if (!!result) {
-            setData(result?.text);
-          }
+      {scanEnable && (
+        <QrReader
+          onResult={(result, error) => {
+            if (!!result) {
+              // setData(result?.text);
+              if (result?.text) {
+                setScanEnable(false);
+                navigate("/bookings");
+              }
+            }
 
-          if (!!error) {
-            console.info(error);
-          }
-        }}
-        videoContainerStyle={{
-          width: "100vw",
-          height: "100vh",
-          position: "relative",
-          paddingTop: 0,
-        }}
-        className="mycamera"
-        videoStyle={{}}
-        constraints={{
-          facingMode: "environment",
-        }}
-      />
-      <p>{data}</p>
+            if (!!error) {
+              console.info(error);
+            }
+          }}
+          videoContainerStyle={{
+            width: "100vw",
+            height: "100vh",
+            position: "relative",
+            paddingTop: 0,
+          }}
+          className="mycamera"
+          videoStyle={{ width: "100vw", height: "100vh" }}
+          constraints={{
+            facingMode: "environment",
+          }}
+        />
+      )}
+      {/* <p>{data}</p> */}
     </>
   );
 };
